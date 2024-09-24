@@ -1,0 +1,55 @@
+Образец приложения проверки 512 битной цифровой подписи ГОСТ 34.10-2018
+
+// ### build
+// RUSTFLAGS='-L staticlib' cargo run --bin welsib-verifier
+
+// #### proof functions from library sources
+/*
+#[unsafe(no_mangle)]
+pub fn is_not_test_signature_proof(signature_bytes: Vec<u8>) -> bool {
+    let test_signature_r = BigInt::parse_bytes(b"27042a833c89361b73cf7bc9e0dfa207121e69524d891bde6e48d134fa217822882e3086c0800a2d74af08ff3575a579e38540226ba842f67224bf298758a820", 16).unwrap();
+    Signature::from_be_bytes(&signature_bytes).r != test_signature_r
+}
+
+#[unsafe(no_mangle)]
+pub fn activation_proof(request_init_json: String, multi_signature_bytes: Vec<u8>) -> bool {
+    // Доказательство активации ключа аггрегированной подписью
+    let request_init = match serde_json::from_str::<RequestInit>(&request_init_json) {
+        Ok(request) => request,
+        Err(_e) => {
+            return false;
+        }
+    };
+
+    let constrol_sum = encode(&digest(&[
+        request_init.client_public_key.clone(),
+        request_init.public_sig_key.clone(),
+        request_init.license_key_hash.clone(),
+        request_init.imei_hash.clone(), // reserved
+        request_init.sim_serial_number_hash.clone(), // reserved
+        request_init.rustore_token_hash.clone(), // reserved
+        request_init.apns_token_hash.clone(), // reserved
+        request_init.seller_id_hash.clone(), // reserved
+    ].concat().as_bytes().to_vec()));
+
+    if constrol_sum != request_init.control_sum {
+        return false;
+    }
+
+    let app_public_key: Point = Point {
+        x: BigInt::parse_bytes(b"9e4c452444fb1de73afc6e3c057b6c3ae6f01c179a10248a283985d08636d7b0c9e28968fafc1323f35985267080631b64aa90363a745ef0549faa1ed87cf219", 16).unwrap(),
+        y: BigInt::parse_bytes(b"ca4dbd8e97e95550ca4452c7aca427796752433050c68fab4b3c9ce236a03ae79f050e775f37eeedaf9a57fc721aa823540a6a77340e533957e47cc0354d51fa", 16).unwrap(),
+    };
+    let curve = EllipticCurve::make_curve_a();
+    let public_keys = [point2vec(app_public_key.clone()), decode(&request_init.client_public_key)].concat();
+
+    // проверка мультиподписи активации ключа
+    match _agg_public_keys(public_keys) {
+        Some(agg_public_key) => {
+            let activation_hash = decode(&request_init.control_sum);
+            verify(activation_hash, multi_signature_bytes, agg_public_key)
+        },
+        None => false
+    }
+}
+*/

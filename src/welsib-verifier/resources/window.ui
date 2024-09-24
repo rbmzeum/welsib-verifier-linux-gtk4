@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <template class="WelsibVerifierWindow" parent="AdwApplicationWindow">
+        <property name="default-width">1200</property>
+        <property name="default-height">640</property>
+        <property name="title">Welsib verifier</property>
+        <child>
+            <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                    <object class="AdwHeaderBar" id="headerbar">
+                        <property name="title-widget">
+                        <object class="AdwWindowTitle">
+                            <property name="subtitle">Welsib</property>
+                            <property name="title">Verifier</property>
+                        </object>
+                        </property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkLabel">
+                        <property name="halign">start</property>
+                        <property name="margin-bottom">4</property>
+                        <property name="margin-top">15</property>
+                        <property name="margin-end">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="label">Место для контента:</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkTextView" id="content">
+                        <property name="margin-end">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="buffer">
+                            <object class="GtkTextBuffer">
+                                <property name="text">Hello, everybody!
+</property>
+                            </object>
+                        </property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkLabel">
+                        <property name="halign">start</property>
+                        <property name="margin-bottom">4</property>
+                        <property name="margin-top">15</property>
+                        <property name="margin-end">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="label">Место для цифровой подписи:</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkTextView" id="signature">
+                        <property name="wrap-mode">char</property>
+                        <property name="margin-end">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="buffer">
+                            <object class="GtkTextBuffer">
+                                <property name="text">25a2054c503f7254b79e5b5367942eecb55dba2455b9281907d632ddf94525dd3b9988d734f0362a49c7126849071ec58805fc75dacea5acae169a4e5d3d5f4ed0d5e3aa6b59bda2f44c914a7b6c61ee2af74949b0c0c8841bd1b63cb2ef5fc889d6ce1159dcb3b9ca659295aee8d800d8f31e53795e42424fd96f14143ad074</property>
+                            </object>
+                        </property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkLabel">
+                        <property name="halign">start</property>
+                        <property name="margin-bottom">4</property>
+                        <property name="margin-top">15</property>
+                        <property name="margin-end">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="label">Место для публичного ключа создателя цифровой подписи:</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkTextView" id="public_key">
+                        <property name="wrap-mode">char</property>
+                        <property name="margin-end">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="buffer">
+                            <object class="GtkTextBuffer">
+                                <property name="text">9e4c452444fb1de73afc6e3c057b6c3ae6f01c179a10248a283985d08636d7b0c9e28968fafc1323f35985267080631b64aa90363a745ef0549faa1ed87cf219ca4dbd8e97e95550ca4452c7aca427796752433050c68fab4b3c9ce236a03ae79f050e775f37eeedaf9a57fc721aa823540a6a77340e533957e47cc0354d51fa</property>
+                            </object>
+                        </property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkButton" id="verify">
+                        <property name="label">Проверить содержимое на соответствие цифровой подписи</property>
+                        <property name="action-name">verify</property>
+                        <property name="valign">center</property>
+                        <property name="margin-bottom">4</property>
+                        <property name="margin-top">15</property>
+                        <property name="margin-end">10</property>
+                        <property name="margin-start">10</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwStatusPage" id="status_success">
+                        <property name="visible">False</property>
+                        <property name="description">Результат проверки цифровой подписи</property>
+                        <property name="icon-name">emblem-ok-symbolic</property>
+                        <property name="title">Подпись верна</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwStatusPage" id="status_failed">
+                        <property name="visible">False</property>
+                        <property name="description">Результат проверки цифровой подписи</property>
+                        <property name="icon-name">emblem-important-symbolic</property>
+                        <property name="title">Подпись НЕ верна</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </template>
+</interface>
