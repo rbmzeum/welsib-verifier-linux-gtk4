@@ -126,8 +126,10 @@ impl ObjectSubclass for Window {
 
                 let title_test = if is_not_test_signature {""} else {", и ОСТОРОЖНО, ключь тестовый"};
                 if is_valid_content {
+                    win.imp().status_success.add_css_class("compact");
                     win.imp().status_success.set_title(["Подпись верна", title_test].concat().as_str());
                 } else {
+                    win.imp().status_failed.add_css_class("compact");
                     win.imp().status_failed.set_title(["Подпись НЕ верна", title_test].concat().as_str());
                 }
 
